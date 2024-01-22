@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>multiple app</title>
+    <style>
+        body{
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            align-items: center;
+            text-align: center;
+            background-color: hotpink;
+            font-family: cursive;
+        }
+        .form{
+            background-color: wheat;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            margin: 10px;
+        }
+        .input{
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 30px;
+            text-align: center;
+            padding: 10px;
+            border: 4px solid rgb(150, 35, 156);
+            border-radius: 5px;
+
+
+        }
+        .input::placeholder{
+            color: lightgray;
+            font-family: cursive;
+        }
+        .btn{
+            background-color: rgb(226, 43, 174);
+            color: white;
+            border: none;
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 20px;
+            font-family: cursive;
+            margin: 20px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+
+
+        }
+        .btn:hover{
+            filter: brightness(.6);
+        }
+        .score{
+            color: rgb(237, 17, 230);
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <form class="form" id="form">
+        <h4 class="score" id="score">score: 0</h4>
+        <h1 class="" id="question">What is 1 multiply by 1?</h1>
+        <input type="text" class="input" id="input" placeholder="Enter your answer" autofocus autocomplete="off">
+        <button type="submit" class="btn">Submit</button>
+    </form>
+    <script>
+        const num1 = Math.ceil(Math.random()*10)
+        const num2 = Math.ceil(Math.random()*10)
+        const questionE1 = document.getElementById("question")
+        const inputE1 = document.getElementById("input")
+        const formE1 = document.getElementById("form")
+
+        const scoreE1 =document.getElementById("score")
+        let score = JSON.parse(localStorage.getItem("score"))
+
+        if(!score){
+            score = 0;
+        }
+        scoreE1.innerText = "score: "+score;
+        questionE1.innerText = "What is"+" " +num1+" "+"multiply by"+" "+num2 + "?"
+        
+        const correctAns = num1 * num2;
+        formE1.addEventListener("submit", ()=>{
+            const userAns = + inputE1.value
+            // alert(userAns, typeof userAns);
+            if(userAns===correctAns){
+                score++;
+                updateLocalStorage()
+            }
+            else{
+                score--;
+                updateLocalStorage()
+            }
+        })
+        function updateLocalStorage(){
+            localStorage.setItem("score", JSON.stringify(score))
+        }
+    
+    </script>
+</body>
+</html>
