@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticy navbar</title>
+    <style>
+        body{
+            margin: 0;
+
+        }
+        .top-container{
+            background-image: url(./christian-wiediger-WkfDrhxDMC8-unsplash.jpg);
+            height: 100vh;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .top-container h1{
+            color: white;
+            font-size: 50px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            letter-spacing: 2px;
+        }
+        .text{
+            margin: 50px 5%;
+            font-family: sans-serif;
+        }
+        .navbar{
+            display: flex;
+            position: fixed;
+            background-color: white;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+        }
+        .navbar ul{
+            display: flex;
+            list-style: none;
+
+        }
+        .navbar ul li a{
+            text-decoration: none;
+            margin: 0 10px;
+            color: black;
+            font-family: cursive;
+        }
+        .navbar ul li a:hover{
+            color: red;
+        }
+        .navbar.active{
+            background-color: black;
+            
+        }
+        .navbar.active ul li a{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img style="width: 84px; margin: 0; height: 100%;" src="./as[1].jpeg.png" alt="logo of company">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+    <div class="top-container">
+        <h1>Welcome to our website</h1>
+    </div>
+    <div class="bottom-container">
+        <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia animi error aliquam suscipit sequi explicabo vel placeat impedit cupiditate quo, ut, cum tenetur distinctio ullam nesciunt illo illum voluptatum dignissimos. Laudantium, magni natus? Nesciunt deserunt id maiores quisquam numquam unde doloribus fugit corporis alias, incidunt fuga facilis voluptatem amet est quo culpa ea expedita, tenetur dolorem iusto. Consequuntur sunt aut quae quia vel vitae quas eum, minima ullam sit, voluptates molestias at. Dolorem iure iusto iste in nisi! Repellat labore sunt tempora dicta, rem natus commodi alias maiores dolores ullam dolorum esse dolorem fugit explicabo nam omnis blanditiis obcaecati? Id?</p>
+        <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia animi error aliquam suscipit sequi explicabo vel placeat impedit cupiditate quo, ut, cum tenetur distinctio ullam nesciunt illo illum voluptatum dignissimos. Laudantium, magni natus? Nesciunt deserunt id maiores quisquam numquam unde doloribus fugit corporis alias, incidunt fuga facilis voluptatem amet est quo culpa ea expedita, tenetur dolorem iusto. Consequuntur sunt aut quae quia vel vitae quas eum, minima ullam sit, voluptates molestias at. Dolorem iure iusto iste in nisi! Repellat labore sunt tempora dicta, rem natus commodi alias maiores dolores ullam dolorum esse dolorem fugit explicabo nam omnis blanditiis obcaecati? Id?</p>
+        <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia animi error aliquam suscipit sequi explicabo vel placeat impedit cupiditate quo, ut, cum tenetur distinctio ullam nesciunt illo illum voluptatum dignissimos. Laudantium, magni natus? Nesciunt deserunt id maiores quisquam numquam unde doloribus fugit corporis alias, incidunt fuga facilis voluptatem amet est quo culpa ea expedita, tenetur dolorem iusto. Consequuntur sunt aut quae quia vel vitae quas eum, minima ullam sit, voluptates molestias at. Dolorem iure iusto iste in nisi! Repellat labore sunt tempora dicta, rem natus commodi alias maiores dolores ullam dolorum esse dolorem fugit explicabo nam omnis blanditiis obcaecati? Id?</p>
+        <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia animi error aliquam suscipit sequi explicabo vel placeat impedit cupiditate quo, ut, cum tenetur distinctio ullam nesciunt illo illum voluptatum dignissimos. Laudantium, magni natus? Nesciunt deserunt id maiores quisquam numquam unde doloribus fugit corporis alias, incidunt fuga facilis voluptatem amet est quo culpa ea expedita, tenetur dolorem iusto. Consequuntur sunt aut quae quia vel vitae quas eum, minima ullam sit, voluptates molestias at. Dolorem iure iusto iste in nisi! Repellat labore sunt tempora dicta, rem natus commodi alias maiores dolores ullam dolorum esse dolorem fugit explicabo nam omnis blanditiis obcaecati? Id?</p>
+    </div>
+    <script>
+        const navbarE1 = document.querySelector(".navbar");
+        const bottomContainerE1 = document.querySelector(".bottom-Container");
+        // console.log(navbarE1.offsetHeight);
+        console.log(bottomContainerE1.offset);
+        window.addEventListener("scroll",()=>{
+            // if(window.scrollY >  - 40-
+            // navbarE1.offsetHeight - 50){
+            //     navbarE1.classList.add("active");
+            // }
+            // else{
+            //     navbarE1.classList.remove("active");
+            // }
+        });
+    </script>
+</body>
+</html>
