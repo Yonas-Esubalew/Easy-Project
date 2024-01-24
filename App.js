@@ -1,15 +1,11 @@
-import React from 'react';
-import Review from './Review';
+import logo from './logo.svg';
+import './App.css';
+import Welcome from './components/Welcome';
+
 function App() {
   return (
-    <div>
-      <section className='container'>
-        <div className='title'>
-          <h2>our reviews</h2>
-          <div className='underline'></div>
-        </div>
-        <Review />
-      </section>
+    <div className="App">
+      <Welcome></Welcome>
     </div>
   );
 }
