@@ -1,8 +1,16 @@
-import React from 'react'
-import './App.css';
+import React from 'react';
+import Review from './Review';
 function App() {
   return (
-    <div>hello</div>
+    <div>
+      <section className='container'>
+        <div className='title'>
+          <h2>our reviews</h2>
+          <div className='underline'></div>
+        </div>
+        <Review />
+      </section>
+    </div>
   );
 }
 
