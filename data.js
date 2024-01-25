@@ -1,36 +1,73 @@
-const people = [
+import React from 'react';
+import {
+  FaBehance,
+  FaFacebook,
+  FaLinkedin,
+  FaTwitter,
+  FaSketch,
+  FaHome,
+  FaUserFriends,
+  FaFolderOpen,
+  FaCalendarAlt,
+  FaWpforms,
+} from 'react-icons/fa';
+export const links = [
   {
     id: 1,
-    image: 'https://www.course-api.com/images/people/person-1.jpeg',
-    name: 'maria ferguson',
-    title: 'office manager',
-    quote:
-      'Fingerstache umami squid, kinfolk subway tile selvage tumblr man braid viral kombucha gentrify fanny pack raclette pok pok mustache.',
+    url: '/',
+    text: 'home',
+    icon: <FaHome />,
   },
   {
     id: 2,
-    image: 'https://www.course-api.com/images/people/person-4.jpeg',
-    name: 'john doe',
-    title: 'regular guy',
-    quote:
-      'Gastropub sustainable tousled prism occupy. Viral XOXO roof party brunch actually, chambray listicle microdosing put a bird on it paleo subway tile squid umami.',
+    url: '/team',
+    text: 'team',
+    icon: <FaUserFriends />,
   },
   {
     id: 3,
-    image: 'https://www.course-api.com/images/people/person-3.jpeg',
-    name: 'peter smith',
-    title: 'product designer',
-    quote:
-      'Drinking vinegar polaroid street art echo park, actually semiotics next level butcher master cleanse hammock flexitarian ethical paleo.',
+    url: '/projects',
+    text: 'projects',
+    icon: <FaFolderOpen />,
   },
   {
     id: 4,
-    image: 'https://www.course-api.com/images/people/person-2.jpeg',
-    name: 'susan andersen',
-    title: 'the boss',
-    quote:
-      'Marfa af yr 3 wolf moon kogi, readymade distillery asymmetrical seitan kale chips fingerstache cloud bread mustache twee messenger bag. ',
+    url: '/calendar',
+    text: 'calendar',
+    icon: <FaCalendarAlt />,
+  },
+  {
+    id: 5,
+    url: '/documents',
+    text: 'documents',
+    icon: <FaWpforms />,
   },
 ];
 
-export default people;
+export const social = [
+  {
+    id: 1,
+    url: 'https://www.twitter.com',
+    icon: <FaFacebook />,
+  },
+  {
+    id: 2,
+    url: 'https://www.twitter.com',
+    icon: <FaTwitter />,
+  },
+  {
+    id: 3,
+    url: 'https://www.twitter.com',
+    icon: <FaLinkedin />,
+  },
+  {
+    id: 4,
+    url: 'https://www.twitter.com',
+    icon: <FaBehance />,
+  },
+  {
+    id: 5,
+    url: 'https://www.twitter.com',
+    icon: <FaSketch />,
+  },
+];
