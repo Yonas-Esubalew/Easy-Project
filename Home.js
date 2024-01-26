@@ -1,13 +1,11 @@
 import React from 'react'
-import Form from './SearchForm'
-import Movies from './Movies'
-const Home = () => {
+import CocktailList from '../components/CocktailList'
+import SearchForm from '../components/SearchForm'
+export default function Home() {
   return (
     <main>
-      <Form />
-      <Movies />
+      <SearchForm />
+      <CocktailList />
     </main>
   )
 }
-
-export default Home
