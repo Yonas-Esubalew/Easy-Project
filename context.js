@@ -1,59 +1,59 @@
-import React, { useState, useContext, useReducer, useEffect } from 'react'
-import cartItems from './data'
+import React, { useContext, useEffect, useReducer } from 'react'
+
+import {
+  SET_LOADING,
+  SET_STORIES,
+  REMOVE_STORY,
+  HANDLE_PAGE,
+  HANDLE_SEARCH,
+} from './actions'
 import reducer from './reducer'
-// ATTENTION!!!!!!!!!!
-// I SWITCHED TO PERMANENT DOMAIN
-const url = 'https://course-api.com/react-useReducer-cart-project'
-const AppContext = React.createContext()
+
+const API_ENDPOINT = 'https://hn.algolia.com/api/v1/search?'
 
 const initialState = {
-  loading: false,
-  cart: cartItems,
-  total: 0,
-  amount: 0,
+  isLoading: true,
+  hits: [],
+  query: 'react',
+  page: 0,
+  nbPages: 0,
 }
+
+const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const clearCart = () => {
-    dispatch({ type: 'CLEAR_CART' })
+  const fetchStories = async (url) => {
+    dispatch({ type: SET_LOADING })
+    try {
+      const response = await fetch(url)
+      const data = await response.json()
+      dispatch({
+        type: SET_STORIES,
+        payload: { hits: data.hits, nbPages: data.nbPages },
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
-  const remove = (id) => {
-    dispatch({ type: 'REMOVE', payload: id })
-  }
-  const increase = (id) => {
-    dispatch({ type: 'INCREASE', payload: id })
-  }
-  const decrease = (id) => {
-    dispatch({ type: 'DECREASE', payload: id })
-  }
-  const fetchData = async () => {
-    dispatch({ type: 'LOADING' })
-    const response = await fetch(url)
-    const cart = await response.json()
-    dispatch({ type: 'DISPLAY_ITEMS', payload: cart })
-  }
-  const toggleAmount = (id, type) => {
-    dispatch({ type: 'TOGGLE_AMOUNT', payload: { id, type } })
-  }
-  useEffect(() => {
-    fetchData()
-  }, [])
 
+  const removeStory = (id) => {
+    dispatch({ type: REMOVE_STORY, payload: id })
+  }
+  const handleSearch = (query) => {
+    dispatch({ type: HANDLE_SEARCH, payload: query })
+  }
+  const handlePage = (value) => {
+    dispatch({ type: HANDLE_PAGE, payload: value })
+  }
   useEffect(() => {
-    dispatch({ type: 'GET_TOTALS' })
-  }, [state.cart])
+    fetchStories(`${API_ENDPOINT}query=${state.query}&page=${state.page}`)
+  }, [state.query, state.page])
+
   return (
     <AppContext.Provider
-      value={{
-        ...state,
-        clearCart,
-        remove,
-        increase,
-        decrease,
-        toggleAmount,
-      }}
+      value={{ ...state, removeStory, handleSearch, handlePage }}
     >
       {children}
     </AppContext.Provider>
