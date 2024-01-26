@@ -1,23 +1,32 @@
-export default [
+const articles = [
   {
     id: 1,
-    title: 'Samsung Galaxy S7',
-    price: 599.99,
-    img: 'https://dl.airtable.com/.attachments/91ee456448cef47deec553a2ea3fa8ad/b08bec68/phone-2_ohtt5s.png',
-    amount: 1,
+    title: 'the WET Codbase',
+    date: new Date(2020, 9, 4),
+    length: 11,
+    snippet: `Come waste your time with me`,
   },
   {
     id: 2,
-    title: 'google pixel ',
-    price: 499.99,
-    img: 'https://dl.airtable.com/.attachments/91c88ae8c1580e2b762ecb3f73ed1eed/a633139a/phone-1_gvesln.png',
-    amount: 1,
+    title: 'goodby, clean code',
+    date: new Date(2019, 10, 22),
+    length: 5,
+    snippet: `Let clean code guide you. Then let it go.`,
   },
   {
     id: 3,
-    title: 'Xiaomi Redmi Note 2',
-    price: 699.99,
-    img: 'https://dl.airtable.com/.attachments/bae9208dc34f35128749ecda5b999e84/337c285d/phone-3_h2s6fo.png',
-    amount: 1,
+    title: 'my decade in review',
+    date: new Date(2018, 7, 11),
+    length: 5,
+    snippet: `A personal reflection.`,
   },
-];
+  {
+    id: 4,
+    title: 'what are the react team principles',
+    date: new Date(2015, 5, 4),
+    length: 5,
+    snippet: `UI Before API.`,
+  },
+]
+
+export default articles
