@@ -1,15 +1,16 @@
-import React from 'react'
-import SearchForm from './SearchForm'
-import Stories from './Stories'
-import Buttons from './Buttons'
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+
+import Home from './Home';
+import Movie from './SingleMovie';
+
 function App() {
   return (
-    <>
-      <SearchForm />
-      <Buttons />
-      <Stories />
-    </>
-  )
+    <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path='movies/:id' element={<Movie />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
