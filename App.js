@@ -1,26 +1,13 @@
-import React from 'react'
-import { useGlobalContext } from './context'
-
-// components
-import Navbar from './Navbar'
-import CartContainer from './CartContainer'
-// items
+import logo from './logo.svg';
+import './App.css';
+import {Welcome} from './Components/Welcome';
 
 function App() {
-  const { loading } = useGlobalContext()
-  if (loading) {
-    return (
-      <div className='loading'>
-        <h1>Loading...</h1>
-      </div>
-    )
-  }
   return (
-    <main>
-      <Navbar />
-      <CartContainer />
-    </main>
-  )
+    <div className="App">
+      <Welcome></Welcome>
+    </div>
+  );
 }
 
-export default App
+export default App;
