@@ -1,10 +1,13 @@
-function componentToHex(c) {
-  var hex = c.toString(16);
-  return hex.length == 1 ? '0' + hex : hex;
+const paginate = (followers) => {
+  const itemsPerPage = 10
+  const numberOfPages = Math.ceil(followers.length / itemsPerPage)
+
+  const newFollowers = Array.from({ length: numberOfPages }, (_, index) => {
+    const start = index * itemsPerPage
+    return followers.slice(start, start + itemsPerPage)
+  })
+
+  return newFollowers
 }
 
-function rgbToHex(r, g, b) {
-  return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b);
-}
-
-export default rgbToHex;
+export default paginate
