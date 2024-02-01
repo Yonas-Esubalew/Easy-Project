@@ -1,26 +1,22 @@
-import React from 'react'
-import { useGlobalContext } from './context'
-
+import React from 'react';
+import { useGlobalContext } from './context';
+import { FaTimes } from 'react-icons/fa';
 const Modal = () => {
-  const { isModalOpen, closeModal, correct, questions } = useGlobalContext()
+  const { isModalOpen, closeModal } = useGlobalContext();
   return (
     <div
       className={`${
-        isModalOpen ? 'modal-container isOpen' : 'modal-container'
+        isModalOpen ? 'modal-overlay show-modal' : 'modal-overlay'
       }`}
     >
-      <div className='modal-content'>
-        <h2>congrats!</h2>
-        <p>
-          You answered {((correct / questions.length) * 100).toFixed(0)}% of
-          questions correctly
-        </p>
-        <button className='close-btn' onClick={closeModal}>
-          play again
+      <div className='modal-container'>
+        <h3>modal content</h3>
+        <button className='close-modal-btn' onClick={closeModal}>
+          <FaTimes></FaTimes>
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;
