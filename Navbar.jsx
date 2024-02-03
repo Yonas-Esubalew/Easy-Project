@@ -1,51 +1,57 @@
 import React, { useState } from 'react';
-import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
-import logo from '../../logo.svg';
-import './navbar.css';
+import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography } from '@material-ui/core';
+import { ShoppingCart } from '@material-ui/icons';
+import { Link, useLocation } from 'react-router-dom';
 
-const Navbar = () => {
-  const [toggleMenu, setToggleMenu] = useState(false);
+import logo from '../../assets/commerce.png';
+import useStyles from './styles';
+
+const PrimarySearchAppBar = ({ totalItems }) => {
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+  const classes = useStyles();
+  const location = useLocation();
+
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const handleMobileMenuClose = () => setMobileMoreAnchorEl(null);
+
+  const mobileMenuId = 'primary-search-account-menu-mobile';
+
+  const renderMobileMenu = (
+    <Menu anchorEl={mobileMoreAnchorEl} anchorOrigin={{ vertical: 'top', horizontal: 'right' }} id={mobileMenuId} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'right' }} open={isMobileMenuOpen} onClose={handleMobileMenuClose}>
+      <MenuItem>
+        <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
+          <Badge badgeContent={totalItems} color="secondary">
+            <ShoppingCart />
+          </Badge>
+        </IconButton>
+        <p>Cart</p>
+      </MenuItem>
+    </Menu>
+  );
 
   return (
-    <div className="gpt3__navbar">
-      <div className="gpt3__navbar-links">
-        <div className="gpt3__navbar-links_logo">
-          <img src={logo} />
-        </div>
-        <div className="gpt3__navbar-links_container">
-          <p><a href="#home">Home</a></p>
-          <p><a href="#wgpt3">What is GPT3?</a></p>
-          <p><a href="#possibility">Open AI</a></p>
-          <p><a href="#features">Case Studies</a></p>
-          <p><a href="#blog">Library</a></p>
-        </div>
-      </div>
-      <div className="gpt3__navbar-sign">
-        <p>Sign in</p>
-        <button type="button">Sign up</button>
-      </div>
-      <div className="gpt3__navbar-menu">
-        {toggleMenu
-          ? <RiCloseLine color="#fff" size={27} onClick={() => setToggleMenu(false)} />
-          : <RiMenu3Line color="#fff" size={27} onClick={() => setToggleMenu(true)} />}
-        {toggleMenu && (
-        <div className="gpt3__navbar-menu_container scale-up-center">
-          <div className="gpt3__navbar-menu_container-links">
-            <p><a href="#home">Home</a></p>
-            <p><a href="#wgpt3">What is GPT3?</a></p>
-            <p><a href="#possibility">Open AI</a></p>
-            <p><a href="#features">Case Studies</a></p>
-            <p><a href="#blog">Library</a></p>
+    <>
+      <AppBar position="fixed" className={classes.appBar} color="inherit">
+        <Toolbar>
+          <Typography component={Link} to="/" variant="h6" className={classes.title} color="inherit">
+            <img src={logo} alt="commerce.js" height="25px" className={classes.image} /> Commerce.js
+          </Typography>
+          <div className={classes.grow} />
+          {location.pathname === '/' && (
+          <div className={classes.button}>
+            <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
+              <Badge badgeContent={totalItems} color="secondary">
+                <ShoppingCart />
+              </Badge>
+            </IconButton>
           </div>
-          <div className="gpt3__navbar-menu_container-links-sign">
-            <p>Sign in</p>
-            <button type="button">Sign up</button>
-          </div>
-        </div>
-        )}
-      </div>
-    </div>
+          )}
+        </Toolbar>
+      </AppBar>
+      {renderMobileMenu}
+    </>
   );
 };
 
-export default Navbar;
+export default PrimarySearchAppBar;
