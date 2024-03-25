@@ -1,43 +1,67 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react'
 
-const AppContext = React.createContext();
+import {
+  SET_LOADING,
+  SET_STORIES,
+  REMOVE_STORY,
+  HANDLE_PAGE,
+  HANDLE_SEARCH,
+} from './actions'
+import reducer from './reducer'
+
+const API_ENDPOINT = 'https://hn.algolia.com/api/v1/search?'
+
+const initialState = {
+  isLoading: true,
+  hits: [],
+  query: 'react',
+  page: 0,
+  nbPages: 0,
+}
+
+const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [state, dispatch] = useReducer(reducer, initialState)
 
-  const openSidebar = () => {
-    setIsSidebarOpen(true);
-  };
-  const closeSidebar = () => {
-    setIsSidebarOpen(false);
-  };
+  const fetchStories = async (url) => {
+    dispatch({ type: SET_LOADING })
+    try {
+      const response = await fetch(url)
+      const data = await response.json()
+      dispatch({
+        type: SET_STORIES,
+        payload: { hits: data.hits, nbPages: data.nbPages },
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  const removeStory = (id) => {
+    dispatch({ type: REMOVE_STORY, payload: id })
+  }
+  const handleSearch = (query) => {
+    dispatch({ type: HANDLE_SEARCH, payload: query })
+  }
+  const handlePage = (value) => {
+    dispatch({ type: HANDLE_PAGE, payload: value })
+  }
+  useEffect(() => {
+    fetchStories(`${API_ENDPOINT}query=${state.query}&page=${state.page}`)
+  }, [state.query, state.page])
 
   return (
     <AppContext.Provider
-      value={{
-        isSidebarOpen,
-        isModalOpen,
-        openModal,
-        closeModal,
-        openSidebar,
-        closeSidebar,
-      }}
+      value={{ ...state, removeStory, handleSearch, handlePage }}
     >
       {children}
     </AppContext.Provider>
-  );
-};
-
+  )
+}
+// make sure use
 export const useGlobalContext = () => {
-  return useContext(AppContext);
-};
+  return useContext(AppContext)
+}
 
-export { AppContext, AppProvider };
+export { AppContext, AppProvider }
