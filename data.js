@@ -1,40 +1,32 @@
-const reviews = [
+const articles = [
   {
     id: 1,
-    name: 'susan smith',
-    job: 'web developer',
-    image:
-      'https://res.cloudinary.com/diqqf3eq2/image/upload/v1586883334/person-1_rfzshl.jpg',
-    text:
-      "I'm baby meggings twee health goth +1. Bicycle rights tumeric chartreuse before they sold out chambray pop-up. Shaman humblebrag pickled coloring book salvia hoodie, cold-pressed four dollar toast everyday carry",
+    title: 'the WET Codbase',
+    date: new Date(2020, 9, 4),
+    length: 11,
+    snippet: `Come waste your time with me`,
   },
   {
     id: 2,
-    name: 'anna johnson',
-    job: 'web designer',
-    image:
-      'https://res.cloudinary.com/diqqf3eq2/image/upload/v1586883409/person-2_np9x5l.jpg',
-    text:
-      'Helvetica artisan kinfolk thundercats lumbersexual blue bottle. Disrupt glossier gastropub deep v vice franzen hell of brooklyn twee enamel pin fashion axe.photo booth jean shorts artisan narwhal.',
+    title: 'goodby, clean code',
+    date: new Date(2019, 10, 22),
+    length: 5,
+    snippet: `Let clean code guide you. Then let it go.`,
   },
   {
     id: 3,
-    name: 'peter jones',
-    job: 'intern',
-    image:
-      'https://res.cloudinary.com/diqqf3eq2/image/upload/v1586883417/person-3_ipa0mj.jpg',
-    text:
-      'Sriracha literally flexitarian irony, vape marfa unicorn. Glossier tattooed 8-bit, fixie waistcoat offal activated charcoal slow-carb marfa hell of pabst raclette post-ironic jianbing swag.',
+    title: 'my decade in review',
+    date: new Date(2018, 7, 11),
+    length: 5,
+    snippet: `A personal reflection.`,
   },
   {
     id: 4,
-    name: 'bill anderson',
-    job: 'the boss',
-    image:
-      'https://res.cloudinary.com/diqqf3eq2/image/upload/v1586883423/person-4_t9nxjt.jpg',
-    text:
-      'Edison bulb put a bird on it humblebrag, marfa pok pok heirloom fashion axe cray stumptown venmo actually seitan. VHS farm-to-table schlitz, edison bulb pop-up 3 wolf moon tote bag street art shabby chic. ',
+    title: 'what are the react team principles',
+    date: new Date(2015, 5, 4),
+    length: 5,
+    snippet: `UI Before API.`,
   },
-];
+]
 
-export default reviews;
+export default articles

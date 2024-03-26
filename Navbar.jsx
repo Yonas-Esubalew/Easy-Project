@@ -1,57 +1,60 @@
-import React, { useState } from 'react';
-import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography } from '@material-ui/core';
-import { ShoppingCart } from '@material-ui/icons';
-import { Link, useLocation } from 'react-router-dom';
+import { useState } from "react";
 
-import logo from '../../assets/commerce.png';
-import useStyles from './styles';
+import { close, logo, menu } from "../assets";
+import { navLinks } from "../constants";
 
-const PrimarySearchAppBar = ({ totalItems }) => {
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-  const classes = useStyles();
-  const location = useLocation();
-
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  const handleMobileMenuClose = () => setMobileMoreAnchorEl(null);
-
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-
-  const renderMobileMenu = (
-    <Menu anchorEl={mobileMoreAnchorEl} anchorOrigin={{ vertical: 'top', horizontal: 'right' }} id={mobileMenuId} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'right' }} open={isMobileMenuOpen} onClose={handleMobileMenuClose}>
-      <MenuItem>
-        <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
-          <Badge badgeContent={totalItems} color="secondary">
-            <ShoppingCart />
-          </Badge>
-        </IconButton>
-        <p>Cart</p>
-      </MenuItem>
-    </Menu>
-  );
+const Navbar = () => {
+  const [active, setActive] = useState("Home");
+  const [toggle, setToggle] = useState(false);
 
   return (
-    <>
-      <AppBar position="fixed" className={classes.appBar} color="inherit">
-        <Toolbar>
-          <Typography component={Link} to="/" variant="h6" className={classes.title} color="inherit">
-            <img src={logo} alt="commerce.js" height="25px" className={classes.image} /> Commerce.js
-          </Typography>
-          <div className={classes.grow} />
-          {location.pathname === '/' && (
-          <div className={classes.button}>
-            <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
-              <Badge badgeContent={totalItems} color="secondary">
-                <ShoppingCart />
-              </Badge>
-            </IconButton>
-          </div>
-          )}
-        </Toolbar>
-      </AppBar>
-      {renderMobileMenu}
-    </>
+    <nav className="w-full flex py-6 justify-between items-center navbar">
+      <img src={logo} alt="hoobank" className="w-[124px] h-[32px]" />
+
+      <ul className="list-none sm:flex hidden justify-end items-center flex-1">
+        {navLinks.map((nav, index) => (
+          <li
+            key={nav.id}
+            className={`font-poppins font-normal cursor-pointer text-[16px] ${
+              active === nav.title ? "text-white" : "text-dimWhite"
+            } ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}`}
+            onClick={() => setActive(nav.title)}
+          >
+            <a href={`#${nav.id}`}>{nav.title}</a>
+          </li>
+        ))}
+      </ul>
+
+      <div className="sm:hidden flex flex-1 justify-end items-center">
+        <img
+          src={toggle ? close : menu}
+          alt="menu"
+          className="w-[28px] h-[28px] object-contain"
+          onClick={() => setToggle(!toggle)}
+        />
+
+        <div
+          className={`${
+            !toggle ? "hidden" : "flex"
+          } p-6 bg-black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}
+        >
+          <ul className="list-none flex justify-end items-start flex-1 flex-col">
+            {navLinks.map((nav, index) => (
+              <li
+                key={nav.id}
+                className={`font-poppins font-medium cursor-pointer text-[16px] ${
+                  active === nav.title ? "text-white" : "text-dimWhite"
+                } ${index === navLinks.length - 1 ? "mb-0" : "mb-4"}`}
+                onClick={() => setActive(nav.title)}
+              >
+                <a href={`#${nav.id}`}>{nav.title}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </nav>
   );
 };
 
-export default PrimarySearchAppBar;
+export default Navbar;
