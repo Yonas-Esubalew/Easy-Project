@@ -1,19 +1,11 @@
-import React from 'react';
-import { FaBars } from 'react-icons/fa';
-import { useGlobalContext } from './context';
-
-const Home = () => {
-  const { openSidebar, openModal } = useGlobalContext();
+import React from 'react'
+import CocktailList from '../components/CocktailList'
+import SearchForm from '../components/SearchForm'
+export default function Home() {
   return (
     <main>
-      <button onClick={openSidebar} className='sidebar-toggle'>
-        <FaBars />
-      </button>
-      <button onClick={openModal} className='btn'>
-        show modal
-      </button>
+      <SearchForm />
+      <CocktailList />
     </main>
-  );
-};
-
-export default Home;
+  )
+}
